@@ -12,7 +12,7 @@ public class BookController extends Controller {
     }
 
     public Result add(Http.Request request) {
-        return ok("Nice request dude");
+        return ok("Was probably posted, it was a request " + request);
     }
 
     public Result update(Long id) {
