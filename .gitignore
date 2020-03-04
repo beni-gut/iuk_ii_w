@@ -1,6 +1,7 @@
 # Muss das auch rein?
 null/
-.idea/
+.idea/misc.xml
+.idea/checkstyle-idea.xml
 
 
 # Created by https://www.gitignore.io/api/sbt,windows,intellij,playframework
