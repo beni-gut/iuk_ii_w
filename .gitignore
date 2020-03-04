@@ -2,6 +2,7 @@
 null/
 .idea/misc.xml
 .idea/checkstyle-idea.xml
+.idea/play2_settings.xml
 #
 
 # Created by https://www.gitignore.io/api/sbt,windows,intellij,playframework
