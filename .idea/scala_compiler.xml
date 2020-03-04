@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ScalaCompilerConfiguration">
-    <profile name="sbt 1" modules="iuk_ii_w_4612" />
+    <profile name="sbt 1" modules="iuk_ii_w_3357" />
     <profile name="sbt 2" modules="iuk_ii_w">
       <option name="deprecationWarnings" value="true" />
       <option name="uncheckedWarnings" value="true" />

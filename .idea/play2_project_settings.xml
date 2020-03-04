@@ -13,8 +13,7 @@
         <entry key="root">
           <value>
             <ProjectSettingsEntry>
-              <option name="sourceDir" value="D:\Git\iuk_ii_w\app" />
-              <option name="confDir" value="C:\Users\benir_000\IdeaProjects\iuk_ii_w\app" />
+              <option name="confDir" value="E:\Documents\GitHub\iuk_ii_w\app" />
               <option name="templateImports">
                 <list>
                   <option value="_root_.play.twirl.api.TwirlFeatureImports._" />
@@ -44,7 +43,7 @@
                   <option value="play.libs.F" />
                 </list>
               </option>
-              <option name="uri" value="/C:/Users/benir_000/IdeaProjects/iuk_ii_w" />
+              <option name="uri" value="/E:/Documents/GitHub/iuk_ii_w" />
             </ProjectSettingsEntry>
           </value>
         </entry>
