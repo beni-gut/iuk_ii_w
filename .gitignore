@@ -1,5 +1,6 @@
 # Muss das auch rein?
 null/
+.idea/
 
 
 # Created by https://www.gitignore.io/api/sbt,windows,intellij,playframework
