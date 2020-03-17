@@ -1,18 +1,25 @@
 package controllers;
 
+import com.fasterxml.jackson.databind.JsonNode;
+import models.Book;
+import play.libs.Json;
 import play.mvc.*;
 import services.DefaultBookService;
 
+import java.util.Optional;
+
 public class BookController extends Controller {
-    DefaultBookService bookService;
+    DefaultBookService bookService = new DefaultBookService();
 
     /**
      * Alle Bücher abfragen
+     *
      * @param q Suchparameter
      */
     public Result getAll(String q) {
         if (q == null) {
-            return ok("getAll works");
+            JsonNode json = Json.toJson(bookService.get());
+            return ok(json);
         } else {
             //import method
             return ok("Parameter q ist: " + q);
@@ -24,7 +31,13 @@ public class BookController extends Controller {
      * @param request
      */
     public Result add(Http.Request request) {
-        return ok("Was probably posted, it was a request " + request);
+        if (request == null) {
+            return badRequest("Nothing to POST");
+        } else {
+            Optional<Book> newBook = request.body().parseJson(Book.class);
+            bookService.add(newBook);
+            return ok(Json.toJson(newBook));
+        }
     }
 
     /**

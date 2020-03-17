@@ -13,7 +13,7 @@ public class DefaultBookService {
      *
      * @return list of all books
      */
-    List<Book> get() {
+    public List<Book> get() {
         return bookList;
     }
 
