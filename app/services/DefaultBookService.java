@@ -23,7 +23,7 @@ public class DefaultBookService {
      * @param id book identifier
      * @return book with given identifier or {@code null}
      */
-    Book get(final Long id) {
+    public Book get(final Long id) {
         for (Book book: bookList ) {
             if (book.getId() == id) {
                 return book;
@@ -38,7 +38,7 @@ public class DefaultBookService {
      * @param id book identifier
      * @return {@code true} on success  {@code false} on failure
      */
-    boolean delete(final Long id) {
+    public boolean delete(final Long id) {
         for (Book book: bookList ) {
             if (book.getId() == id) {
                 bookList.remove(book);

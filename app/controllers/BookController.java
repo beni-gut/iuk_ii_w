@@ -17,12 +17,12 @@ public class BookController extends Controller {
      * @param q Suchparameter
      */
     public Result getAll(String q) {
-        if (q == null) {
+        if (q != null) {
+            //no method yet
+            return ok("Parameter q ist: " + q);
+        } else {
             JsonNode json = Json.toJson(bookService.get());
             return ok(json);
-        } else {
-            //import method
-            return ok("Parameter q ist: " + q);
         }
     }
 
@@ -31,12 +31,13 @@ public class BookController extends Controller {
      * @param request
      */
     public Result add(Http.Request request) {
-        if (request == null) {
-            return badRequest("Nothing to POST");
-        } else {
+        if (request != null) {
             Optional<Book> newBook = request.body().parseJson(Book.class);
             bookService.add(newBook);
             return ok(Json.toJson(newBook));
+        } else {
+            //no method yet
+            return badRequest("Nothing to POST");
         }
     }
 
@@ -48,6 +49,7 @@ public class BookController extends Controller {
         if (id != null) {
             return ok("Updated the book with id " + id);
         } else {
+            //no method yet
             return badRequest("Please retry with other parameters");
         }
     }
@@ -58,9 +60,11 @@ public class BookController extends Controller {
      */
     public Result get(Long id) {
         if (id != null) {
-            return ok("Here's some info on book with id " + id);
+            JsonNode json = Json.toJson(bookService.get(id));
+            return ok(json);
         } else {
-            return notFound("This seems to not exist");
+            //no method yet
+            return badRequest("This seems to not exist");
         }
     }
 
@@ -70,8 +74,9 @@ public class BookController extends Controller {
      */
     public Result remove(Long id) {
         if (id != null) {
-            return ok("Removed book with id " + id);
+            return ok(Json.toJson(bookService.delete(id)));
         } else {
+            //no method yet
             return badRequest("Please retry with other parameters");
         }
     }
