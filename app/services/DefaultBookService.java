@@ -54,7 +54,7 @@ public class DefaultBookService {
      * @param updatedBook book with updated fields
      * @return updated book
      */
-    Book update(final Book updatedBook) {
+    public Book update(final Book updatedBook) {
         for (Book book: bookList ) {
             if (book.getId() == updatedBook.getId()) {
                 bookList.set(bookList.indexOf(book), updatedBook);
@@ -70,7 +70,7 @@ public class DefaultBookService {
      * @param book to add
      * @return added book
      */
-    Book add(final Book book) {
+    public Book add(final Book book) {
         bookList.add(book);
         return book;
     }
