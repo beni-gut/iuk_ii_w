@@ -4,7 +4,12 @@ import models.Book;
 import repository.BookRepository;
 
 import javax.inject.Inject;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import java.util.concurrent.CompletionStage;
+import java.util.stream.Stream;
+
 
 public class DefaultBookService {
     private BookRepository bookRepository;
@@ -19,8 +24,8 @@ public class DefaultBookService {
      *
      * @return list of all books
      */
-    public List<Book> get() {
-        return bookList;
+    public CompletionStage<Stream<Book>> get() {
+        return bookRepository.list();
     }
 
     /**
@@ -29,12 +34,8 @@ public class DefaultBookService {
      * @param id book identifier
      * @return book with given identifier or {@code null}
      */
-    public Book get(final Long id) {
-        for (Book book: bookList ) {
-            if (book.getId() == id) {
-                return book;
-            }
-        }
+    public CompletionStage<Book> get(final Long id) {
+        // Needs to be implemented
         return null;
     }
 
@@ -44,14 +45,9 @@ public class DefaultBookService {
      * @param id book identifier
      * @return {@code true} on success  {@code false} on failure
      */
-    public boolean delete(final Long id) {
-        for (Book book: bookList ) {
-            if (book.getId() == id) {
-                bookList.remove(book);
-                return true;
-            }
-        }
-        return false;
+    public CompletionStage<Boolean> delete(final Long id) {
+        // Needs to be implemented
+        return null;
     }
 
     /**
@@ -60,13 +56,8 @@ public class DefaultBookService {
      * @param updatedBook book with updated fields
      * @return updated book
      */
-    public Book update(final Book updatedBook) {
-        for (Book book: bookList ) {
-            if (book.getId() == updatedBook.getId()) {
-                bookList.set(bookList.indexOf(book), updatedBook);
-                return book;
-            }
-        }
+    public CompletionStage<Book> update(final Book updatedBook) {
+        // Needs to be implemented
         return null;
     }
 
@@ -76,8 +67,7 @@ public class DefaultBookService {
      * @param book to add
      * @return added book
      */
-    public Book add(final Book book) {
-        bookList.add(book);
-        return book;
+    public CompletionStage<Book> add(final Book book) {
+        return bookRepository.add(book);
     }
 }

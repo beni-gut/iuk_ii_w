@@ -3,12 +3,38 @@ package controllers;
 import com.fasterxml.jackson.databind.JsonNode;
 import models.Book;
 import play.libs.Json;
-import play.mvc.*;
+import play.libs.concurrent.HttpExecutionContext;
+import play.mvc.BodyParser;
+import play.mvc.Controller;
+import play.mvc.Http;
+import play.mvc.Result;
+import services.BookService;
 import services.DefaultBookService;
 
+import javax.inject.Inject;
+import java.util.concurrent.CompletionStage;
+import java.util.stream.Collectors;
 
 public class BookController extends Controller {
-    DefaultBookService bookService = new DefaultBookService();
+    private final BookService bookService;
+
+
+    @Inject
+    public BookController(BookService bookService, HttpExecutionContext ec) {
+        this.bookService = bookService;
+    }
+
+    public CompletionStage<Result> books(String q) {
+        return bookService.get().thenApplyAsync(bookStream ->
+                ok(Json.toJson(bookStream.collect(Collectors.toList())))
+        );
+    }
+
+
+    /**
+     * Alte Sachen unterhalb
+     */
+
 
     /**
      * Alle Bücher abfragen
