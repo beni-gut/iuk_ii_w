@@ -1,12 +1,18 @@
 package services;
 
 import models.Book;
+import repository.BookRepository;
+
+import javax.inject.Inject;
 import java.util.*;
 
 public class DefaultBookService {
-    ArrayList<Book> bookList = new ArrayList<Book>();
+    private BookRepository bookRepository;
 
-    public DefaultBookService() {}
+    @Inject
+    public DefaultBookService(BookRepository bookRepository) {
+        this.bookRepository = bookRepository;
+    }
 
     /**
      * Return's list of all books.

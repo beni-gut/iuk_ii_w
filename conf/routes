@@ -8,12 +8,16 @@ GET     /                   controllers.HomeController.index
 # Book routes
 # Alle Bücher abfragen
 GET     /books              controllers.BookController.getAll(q: String ?= null)
+
 # Neues Buchdetail erfassen
 POST    /books              controllers.BookController.add(request: Request)
+
 # Buchdetail mit ID aktualisieren
 PUT     /books/:id          controllers.BookController.update(id: Long)
+
 # Abfragen Buch mit ID
 GET     /books/:id          controllers.BookController.get(id: Long)
+
 # Buch mit ID löschen
 DELETE  /books/:id          controllers.BookController.remove(id: Long)
 

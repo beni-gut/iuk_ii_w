@@ -6,7 +6,7 @@
         <entry key="iuk_ii_w">
           <value>
             <ProjectSettingsEntry>
-              <option name="playDistrPath" value="$PROJECT_DIR$/null/Coursier/cache/v1/https/repo1.maven.org/maven2/com/typesafe/play/play_2.13/2.8.0/play_2.13-2.8.0.jar" />
+              <option name="playDistrPath" value="$USER_HOME$/AppData/Local/Coursier/cache/v1/https/repo1.maven.org/maven2/com/typesafe/play/play_2.13/2.8.0/play_2.13-2.8.0.jar" />
             </ProjectSettingsEntry>
           </value>
         </entry>
@@ -14,7 +14,7 @@
           <value>
             <ProjectSettingsEntry>
               <option name="sourceDir" value="E:\Documents\GitHub\iuk_ii_w\app" />
-              <option name="confDir" value="E:\Documents\GitHub\iuk_ii_w\app" />
+              <option name="confDir" value="D:\Git\iuk_ii_w\app" />
               <option name="templateImports">
                 <list>
                   <option value="_root_.play.twirl.api.TwirlFeatureImports._" />
@@ -44,7 +44,7 @@
                   <option value="play.libs.F" />
                 </list>
               </option>
-              <option name="uri" value="/E:/Documents/GitHub/iuk_ii_w" />
+              <option name="uri" value="/D:/Git/iuk_ii_w" />
             </ProjectSettingsEntry>
           </value>
         </entry>
