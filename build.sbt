@@ -14,6 +14,7 @@ libraryDependencies ++= Seq(
   guice,
   javaJdbc,
   javaJpa,
+  javaWs,
 
   "com.h2database" % "h2" % "1.4.192",
   "org.hibernate" % "hibernate-core" % "5.4.9.Final",
