@@ -20,6 +20,21 @@ public class DefaultBookService {
     }
 
     /**
+     *
+     */
+    public Book getDummy() {
+        final Book book = new Book();
+        book.setId(1l);
+        book.setTitle("Titel des Testbuches");
+        book.setIsbn13("978-3-16-148410-0");
+        book.setIsbn10("3161484100");
+        book.setDescription("Testbuch Beschreibung mit interessatem Text");
+        book.setPublisher("Verlag XYZ");
+        book.setPages(225);
+        return book;
+    }
+
+    /**
      * Return's list of all books.
      *
      * @return list of all books

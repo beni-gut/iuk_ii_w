@@ -2,15 +2,12 @@ package controllers;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import models.Book;
-import org.jetbrains.annotations.NotNull;
 import play.libs.Json;
 import play.libs.concurrent.HttpExecutionContext;
-import play.mvc.BodyParser;
 import play.mvc.Controller;
 import play.mvc.Http;
 import play.mvc.Result;
 import services.BookService;
-import services.DefaultBookService;
 
 import javax.inject.Inject;
 import java.util.concurrent.CompletionStage;
@@ -23,6 +20,14 @@ public class BookController extends Controller {
     @Inject
     public BookController(BookService bookService, HttpExecutionContext ec) {
         this.bookService = bookService;
+    }
+
+    /**
+     * Testmethod
+     * @return Dummy book
+     */
+    public Result dummy() {
+        return ok(Json.toJson(bookService.getDummy()));
     }
 
     /**
@@ -41,7 +46,7 @@ public class BookController extends Controller {
      *
      * @param request
      */
-    public CompletionStage<Result> add(@NotNull Http.Request request) {
+    public CompletionStage<Result> add(Http.Request request) {
         final JsonNode json = request.body().asJson();
         final Book newBook = Json.fromJson(json, Book.class);
         return bookService.add(newBook).thenApplyAsync(book -> ok(Json.toJson(book)));
@@ -53,7 +58,7 @@ public class BookController extends Controller {
      * @param id Buch ID
      * @param request
      */
-    public CompletionStage<Result> update(Long id, @NotNull Http.Request request) {
+    public CompletionStage<Result> update(Long id, Http.Request request) {
         final JsonNode json = request.body().asJson();
         final Book updatedBook = Json.fromJson(json, Book.class);
         updatedBook.setId(id);

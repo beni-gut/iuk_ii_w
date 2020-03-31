@@ -43,4 +43,9 @@ public interface BookService {
      */
     CompletionStage<Book> add(final Book book);
 
+    /**
+     * Testmethod
+     * @return Dummy book
+     */
+    Book getDummy();
 }
