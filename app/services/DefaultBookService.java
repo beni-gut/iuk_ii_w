@@ -35,8 +35,7 @@ public class DefaultBookService {
      * @return book with given identifier or {@code null}
      */
     public CompletionStage<Book> get(final Long id) {
-        // Needs to be implemented
-        return null;
+        return bookRepository.find(id);
     }
 
     /**
@@ -46,8 +45,7 @@ public class DefaultBookService {
      * @return {@code true} on success  {@code false} on failure
      */
     public CompletionStage<Boolean> delete(final Long id) {
-        // Needs to be implemented
-        return null;
+        return bookRepository.remove(id);
     }
 
     /**
@@ -57,8 +55,7 @@ public class DefaultBookService {
      * @return updated book
      */
     public CompletionStage<Book> update(final Book updatedBook) {
-        // Needs to be implemented
-        return null;
+        return bookRepository.update(updatedBook);
     }
 
     /**

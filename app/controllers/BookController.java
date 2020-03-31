@@ -2,6 +2,7 @@ package controllers;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import models.Book;
+import org.jetbrains.annotations.NotNull;
 import play.libs.Json;
 import play.libs.concurrent.HttpExecutionContext;
 import play.mvc.BodyParser;
@@ -24,31 +25,15 @@ public class BookController extends Controller {
         this.bookService = bookService;
     }
 
-    public CompletionStage<Result> books(String q) {
-        return bookService.get().thenApplyAsync(bookStream ->
-                ok(Json.toJson(bookStream.collect(Collectors.toList())))
-        );
-    }
-
-
-    /**
-     * Alte Sachen unterhalb
-     */
-
-
     /**
      * Alle Bücher abfragen
      *
      * @param q Suchparameter
      */
-    public Result getAll(String q) {
-        if (q != null) {
-            //no method yet
-            return ok("Parameter q ist: " + q);
-        } else {
-            JsonNode json = Json.toJson(bookService.get());
-            return ok(json);
-        }
+    public CompletionStage<Result> getAll(String q) {
+        return bookService.get().thenApplyAsync(bookStream ->
+                ok(Json.toJson(bookStream.collect(Collectors.toList())))
+        );
     }
 
     /**
@@ -56,33 +41,23 @@ public class BookController extends Controller {
      *
      * @param request
      */
-    public Result add(Http.Request request) {
-        if (request != null) {
-            JsonNode json = request.body().asJson();
-            Book newBook = Json.fromJson(json, Book.class);
-            bookService.add(newBook);
-            return ok(Json.toJson(newBook));
-        } else {
-            //no method yet
-            return badRequest("Nothing to POST");
-        }
+    public CompletionStage<Result> add(@NotNull Http.Request request) {
+        final JsonNode json = request.body().asJson();
+        final Book newBook = Json.fromJson(json, Book.class);
+        return bookService.add(newBook).thenApplyAsync(book -> ok(Json.toJson(book)));
     }
 
     /**
      * Buchdetail für Buch mit ID aktualisieren
      *
+     * @param id Buch ID
      * @param request
      */
-    public Result update(Http.Request request) {
-        if (request != null) {
-            JsonNode json = request.body().asJson();
-            Book updatedBook = Json.fromJson(json, Book.class);
-            bookService.update(updatedBook);
-            return ok(Json.toJson(updatedBook));
-        } else {
-            //no method yet
-            return badRequest("Please retry with other parameters");
-        }
+    public CompletionStage<Result> update(Long id, @NotNull Http.Request request) {
+        final JsonNode json = request.body().asJson();
+        final Book updatedBook = Json.fromJson(json, Book.class);
+        updatedBook.setId(id);
+        return bookService.update(updatedBook).thenApplyAsync(book ->ok(Json.toJson(book)));
     }
 
     /**
@@ -90,14 +65,8 @@ public class BookController extends Controller {
      *
      * @param id Buch ID
      */
-    public Result get(Long id) {
-        if (id != null) {
-            JsonNode json = Json.toJson(bookService.get(id));
-            return ok(json);
-        } else {
-            //no method yet
-            return badRequest("This seems to not exist");
-        }
+    public CompletionStage<Result> getSpecific(Long id) {
+        return bookService.get(id).thenApplyAsync(book -> ok(Json.toJson(book)));
     }
 
     /**
@@ -105,12 +74,8 @@ public class BookController extends Controller {
      *
      * @param id Buch ID
      */
-    public Result remove(Long id) {
-        if (id != null) {
-            return ok(Json.toJson(bookService.delete(id)));
-        } else {
-            //no method yet
-            return badRequest("Please retry with other parameters");
-        }
+    public CompletionStage<Result> remove(Long id) {
+        return bookService.delete(id).thenApplyAsync(removed -> removed ? ok() : internalServerError());
     }
+
 }
