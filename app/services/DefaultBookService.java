@@ -4,9 +4,6 @@ import models.Book;
 import repository.BookRepository;
 
 import javax.inject.Inject;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
 import java.util.concurrent.CompletionStage;
 import java.util.stream.Stream;
 
