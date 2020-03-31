@@ -2,11 +2,11 @@ package services;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import javax.inject.Inject;
-import models.Posts;
 import play.libs.Json;
 import play.libs.ws.*;
 import java.util.concurrent.CompletionStage;
 import com.typesafe.config.Config;
+//import models.Posts;
 
 public class DefaultNYTimesService implements NYTimesService, WSBodyReadables {
 
@@ -19,9 +19,10 @@ public class DefaultNYTimesService implements NYTimesService, WSBodyReadables {
         this.apiKey = config.getString("nytimes.api.key");
 
         //application.conf
-        nytimes.api.key="";
+        //nytimes.api.key="";
     }
 
+    /*
     @Override
     public CompletionStage<Posts> posts() {
         final String url = "https://jsonplaceholder.typicode.com/posts";
@@ -29,6 +30,8 @@ public class DefaultNYTimesService implements NYTimesService, WSBodyReadables {
         final CompletionStage<JsonNode> jsonPromise = request.get().thenApply(result -> result.getBody(json()));
         return jsonPromise.thenApplyAsync(json -> Json.fromJson(json, Posts.class));
     }
+
+     */
 
     @Override
     public void bestseller() {
